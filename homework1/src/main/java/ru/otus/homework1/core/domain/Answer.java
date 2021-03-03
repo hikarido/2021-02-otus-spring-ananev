@@ -6,5 +6,13 @@ package ru.otus.homework1.core.domain;
  * @see Exercise
  */
 public interface Answer {
+    /**
+     * @return контент ответа
+     */
     String getText();
+
+    /**
+     * @return верен ли ответ
+     */
+    boolean isRight();
 }
