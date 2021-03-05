@@ -21,4 +21,14 @@ public class AnswerImpl implements Answer {
     public String getText() {
         return content;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null || this.getClass() != other.getClass()) {
+            return false;
+        }
+
+        Answer o = (Answer) other;
+        return this.getText().equals(o.getText()) && this.isRight() == o.isRight();
+    }
 }
