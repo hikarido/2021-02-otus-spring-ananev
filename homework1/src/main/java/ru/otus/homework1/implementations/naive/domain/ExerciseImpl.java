@@ -31,4 +31,19 @@ public class ExerciseImpl implements Exercise {
                 .filter(Answer::isRight)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+
+        if (this.getClass() != other.getClass()) {
+            return false;
+        }
+
+        Exercise o = (Exercise) other;
+        return this.getQuestion().equals(o.getQuestion())
+                & this.getAnswerChoices().equals(o.getAnswerChoices());
+    }
 }
