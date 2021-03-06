@@ -1,6 +1,6 @@
 """question 1 with commas, and some test?""",answer 1,false,answer 2,true
-who was Einstein?,scientist,true,pipe smoker,true
-Is london capital?,yes,true,Isn't it a pub?,true,Creator of this questions a little dizzy!,true
-What do you think about Spring?, good, true, cool, true, works well, true
-"""Suppose given: int i = 10; and  look at "expression" int b = i+++++i;. What will happen if we compile this code and run it if possible?""", code will not compile, true, all right. Answer is 21! I bet, false, """again this crazy questions, I go to next job interview""",true
+"""who was Einstein?""",scientist,true,pipe smoker,true
+"""Is london capital?""",yes,true,Isn't it a pub?,true,Creator of this questions a little dizzy!,true
+"""What do you think about Spring?""", good, true, cool, true, works well, true
+"""Suppose given: int i = 10; and  look at expression int b = i+++++i;. What will happen if we compile this code and run it if possible?""",code will not compile,true,all right. Answer is 21! I bet,false,"""again this crazy questions, I go to next job interview""",true
 
