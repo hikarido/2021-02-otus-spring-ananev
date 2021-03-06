@@ -5,7 +5,7 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="exerciseDao" class="ru.otus.homework1.implementations.naive.dao.ExerciseDaoCsv">
-        <constructor-arg name="exercisesPath" value="exercises.csv"/>
+        <constructor-arg name="exerciseResourceName" value="exercises.csv"/>
     </bean>
 
 </beans>
