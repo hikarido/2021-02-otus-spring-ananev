@@ -7,4 +7,7 @@ package ru.otus.homework1.core.dao;
  * {@link ExerciseDao}
  */
 public class CantGetExercisesException extends RuntimeException {
+    public CantGetExercisesException(String message, Throwable cause){
+        super(message, cause);
+    }
 }
