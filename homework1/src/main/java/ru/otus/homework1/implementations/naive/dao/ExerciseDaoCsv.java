@@ -13,8 +13,10 @@ import ru.otus.homework1.implementations.naive.domain.QuestionImpl;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -24,16 +26,20 @@ import java.util.List;
  * name: exercises.csv<p>
  * content:<p>
  * <p>
- * "question of exercise 1","answer 1", is answer 1 is correct?, "answer 2", is answer 2 correct?,... <p>
- * "question of exercise 2","answer 1", is answer 1 is correct?, "answer 2", is answer 2 correct?,... <p>
+ * "question of exercise 1","answer 1", is answer 1 is correct?, "answer 2", is answer 2
+ * correct?,... <p>
+ * "question of exercise 2","answer 1", is answer 1 is correct?, "answer 2", is answer 2
+ * correct?,... <p>
  * ...<p>
- * "question of exercise N","answer 1", is answer 1 is correct?, "answer 2", is answer 2 correct?,...<p>
+ * "question of exercise N","answer 1", is answer 1 is correct?, "answer 2", is answer 2
+ * correct?,...<p>
  * <p>
  * schema looks like this:
  * text, text, boolean, text, boolean, ..., text, boolean
  * <p>
  * sample: <p>
- * "Who was Albert Einstein?","Scientist",true,"Pipesmoker",true,"real hero",true, "boat with same name",false,"book",false<p>
+ * "Who was Albert Einstein?","Scientist",true,"Pipesmoker",true,"real hero",true, "boat with
+ * same name",false,"book",false<p>
  * "Is London capital?","Strange question, generally speaking",true, "yes", false, "no", false<p>
  * <p>
  * Csv has no header or comments
@@ -43,14 +49,20 @@ public final class ExerciseDaoCsv implements ExerciseDao {
     private Path pathToExercisesSource;
     private List<Exercise> exercises;
 
-    public ExerciseDaoCsv(Path pathToExercisesSource) {
-        this.pathToExercisesSource = pathToExercisesSource;
+    public ExerciseDaoCsv(String exerciseResourceName) {
         try {
+            URL url = getClass().getClassLoader().getResource(exerciseResourceName);
+            if (url == null) {
+                throw new IllegalArgumentException("Can't find resource: " + exerciseResourceName);
+            }
+            pathToExercisesSource = Paths.get(url.getPath());
             exercises = parseCsv(pathToExercisesSource);
-        } catch (IOException e) {
-            CantGetExercisesException toThrow = new CantGetExercisesException();
-            toThrow.initCause(e);
-            throw toThrow;
+        } catch (IOException | IllegalArgumentException e) {
+            throw new CantGetExercisesException("Can't get access to file: " + pathToExercisesSource,
+                    e);
+        } catch (IllegalStateException e) {
+            throw new CantGetExercisesException("Something wrong in content of csv file: " + pathToExercisesSource,
+                    e);
         }
     }
 
@@ -60,7 +72,7 @@ public final class ExerciseDaoCsv implements ExerciseDao {
 
     private List<Exercise> parseCsv(Path pathToCsv) throws IOException {
         if (!Files.isReadable(pathToCsv) || !Files.isRegularFile(pathToCsv)) {
-            throw new IOException("path isn't readable");
+            throw new IOException("path: " + pathToCsv.toString() + " isn't readable");
         }
         try (Reader in = Files.newBufferedReader(pathToCsv)) {
             List<Exercise> exercises = new ArrayList<>();
