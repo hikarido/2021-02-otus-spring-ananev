@@ -9,3 +9,7 @@ The training repository is located on [github](https://github.com/OtusTeam/Sprin
 ## Student info
 * Student: Ananev Konstantin
 * Group: 2021-02
+
+## Homeworks
+
+1) [Homework 1 - First glance at Spring application(Spring context, xml context, pom, maven, junit)](./homework1)
