@@ -13,3 +13,4 @@ The training repository is located on [github](https://github.com/OtusTeam/Sprin
 ## Homeworks
 
 1) [Homework 1 - First glance at Spring application(Spring context, xml context, pom, maven, junit)](./homework1)
+2) [Homework 2 - Java-based configuration of homework1 app + more business logic layers](./homework2)
