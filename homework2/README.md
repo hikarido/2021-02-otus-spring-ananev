@@ -22,3 +22,20 @@
 6. Scanner, PrintStream и другие стандартные типы в контекст класть не нужно!
 7. Ввод-вывод на английском языке.
 8. Помним, "без фанатизма" :)
+
+# take aways
+* how to run debug from mvn
+  * set breakpoints where you want in IDEA
+  * mvn package -Dmaven.surefire.debug 
+  * go Run -> Attach to Process -> and attach to process on 5005 port 
+* how to run certain test 
+  *  mvn -Dtest=ResourceAccessorImplTest#resultPathEqualToExpectedPath test
+* Difference between Class.getResource and similar action trough ClassLoader
+  * In short: Class represent path as relative or absolute, ClassLoader things that path is always absolute. 
+  * Full: [Answer](https://stackoverflow.com/a/6608848/5542559)
+* faced with IDEA [issue](https://youtrack.jetbrains.com/issue/IDEA-238891). Only newly installation of idea was helpful
+
+# Questions
+
+* How to test ExerciseDaoCsv by unit tests? Any test I have written can be treated as integration test. 
+  * for example this test: ReadedExercisesMustBeEqualExercisesInFile
