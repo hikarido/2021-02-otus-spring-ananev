@@ -2,6 +2,8 @@ package ru.otus.homework2.implementations.naive.dao;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import ru.otus.homework2.core.ResourceAccessor;
+import ru.otus.homework2.core.ThereIsNoSuchResource;
 import ru.otus.homework2.core.dao.CantGetExercisesException;
 import ru.otus.homework2.core.dao.ExerciseDao;
 import ru.otus.homework2.core.domain.Answer;
@@ -13,10 +15,8 @@ import ru.otus.homework2.implementations.naive.domain.QuestionImpl;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -46,28 +46,29 @@ import java.util.List;
  * <p>
  */
 public final class ExerciseDaoCsv implements ExerciseDao {
-    private Path pathToExercisesSource;
+    private final ResourceAccessor resourceAccessor;
+    private String exerciseResourceName;
     private List<Exercise> exercises;
 
-    public ExerciseDaoCsv(String exerciseResourceName) {
-        try {
-            URL url = getClass().getClassLoader().getResource(exerciseResourceName);
-            if (url == null) {
-                throw new IllegalArgumentException("Can't find resource: " + exerciseResourceName);
-            }
-            pathToExercisesSource = Paths.get(url.getPath());
-            exercises = parseCsv(pathToExercisesSource);
-        } catch (IOException | IllegalArgumentException e) {
-            throw new CantGetExercisesException("Can't get access to file: " + pathToExercisesSource,
-                    e);
-        } catch (IllegalStateException e) {
-            throw new CantGetExercisesException("Something wrong in content of csv file: " + pathToExercisesSource,
-                    e);
-        }
+    public ExerciseDaoCsv(String exerciseResourceName, ResourceAccessor resourceAccessor) {
+        this.resourceAccessor = resourceAccessor;
+        this.exerciseResourceName = exerciseResourceName;
     }
 
     public List<Exercise> getExercises() {
-        return exercises;
+        return load();
+    }
+
+    private List<Exercise> load() {
+        try {
+            Path pathToCsv = resourceAccessor.getResourcePath(exerciseResourceName);
+            return parseCsv(pathToCsv);
+        } catch (IOException | ThereIsNoSuchResource e) {
+            throw new CantGetExercisesException("Can't get access to file: " + exerciseResourceName, e);
+        } catch (IllegalStateException e) {
+            throw new CantGetExercisesException(
+                    "Something wrong in content of csv file: " + exerciseResourceName, e);
+        }
     }
 
     private List<Exercise> parseCsv(Path pathToCsv) throws IOException {
