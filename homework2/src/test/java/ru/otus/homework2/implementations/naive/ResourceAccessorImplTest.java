@@ -3,7 +3,7 @@ package ru.otus.homework2.implementations.naive;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.otus.homework2.core.ResourceAccessor;
-import ru.otus.homework2.core.ThereIsNoSuchResource;
+import ru.otus.homework2.core.CantGetAccessToResource;
 
 class ResourceAccessorImplTest {
 
@@ -15,7 +15,7 @@ class ResourceAccessorImplTest {
     @Test
     void cantCreateByReasonPassesFileDoesNotExist() {
         ResourceAccessor resourceAccessor = new ResourceAccessorImpl();
-        Assertions.assertThrows(ThereIsNoSuchResource.class,
+        Assertions.assertThrows(CantGetAccessToResource.class,
                 () -> resourceAccessor.getResourceInputStream("/dev/null/somefile"));
     }
 
