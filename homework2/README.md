@@ -2,6 +2,8 @@
 
 # Запуск
 
+* java -cp target/homework2-1.0-SNAPSHOT.jar ru.otus.Main
+
 # Текст задачи
 
 Приложение по проведению тестирования студентов (с самим тестированием)
@@ -24,6 +26,7 @@
 8. Помним, "без фанатизма" :)
 
 # take aways
+
 * how to run debug from mvn
   * set breakpoints where you want in IDEA
   * mvn package -Dmaven.surefire.debug 
@@ -34,6 +37,7 @@
   * In short: Class represent path as relative or absolute, ClassLoader things that path is always absolute. 
   * Full: [Answer](https://stackoverflow.com/a/6608848/5542559)
 * faced with IDEA [issue](https://youtrack.jetbrains.com/issue/IDEA-238891). Only newly installation of idea was helpful
+* best [answer](https://stackoverflow.com/a/20389418/5542559) to question "Why it works in ide but doesn't in jar after package. Or why resource can't be accessed in jar"
 
 # Questions
 
