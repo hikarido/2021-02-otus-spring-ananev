@@ -13,6 +13,7 @@ import ru.otus.homework2.implementations.naive.domain.QuestionImpl;
 
 import org.mockito.Mockito;
 
+import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -23,8 +24,6 @@ public class ExerciseDaoCsvTest {
     void DaoShouldBeCreatedCorrectly() {
         final String resourceName = "test_exercises.csv";
         final ResourceAccessor accessor = Mockito.mock(ResourceAccessor.class);
-        final Path path = Paths.get(accessor.getClass().getClassLoader().getResource(resourceName).getPath());
-        Mockito.when(accessor.getResourcePath(resourceName)).thenReturn(path);
         ExerciseDao dao = new ExerciseDaoCsv(resourceName, accessor);
     }
 
@@ -32,8 +31,8 @@ public class ExerciseDaoCsvTest {
     void amountOfSavedAndReadedExercisesMustBeEqual() {
         final String resourceName = "test_exercises.csv";
         final ResourceAccessor accessor = Mockito.mock(ResourceAccessor.class);
-        final Path path = Paths.get(accessor.getClass().getClassLoader().getResource(resourceName).getPath());
-        Mockito.when(accessor.getResourcePath(resourceName)).thenReturn(path);
+        InputStream stream = accessor.getClass().getClassLoader().getResourceAsStream(resourceName);
+        Mockito.when(accessor.getResourceInputStream(resourceName)).thenReturn(stream);
         ExerciseDao dao = new ExerciseDaoCsv(resourceName, accessor);
         List<Exercise> haveReadExercises = dao.getExercises();
         Assertions.assertEquals(haveReadExercises.size(), 5);
@@ -48,11 +47,10 @@ public class ExerciseDaoCsvTest {
         Answer c = new AnswerImpl("Earth?", false);
         Exercise e = new ExerciseImpl(q, List.of(a, b, c));
         List<Exercise> expectedExercises = List.of(e);
-
         final String resourceName = "test_exercises_with_one_question.csv";
         final ResourceAccessor accessor = Mockito.mock(ResourceAccessor.class);
-        final Path path = Paths.get(accessor.getClass().getClassLoader().getResource(resourceName).getPath());
-        Mockito.when(accessor.getResourcePath(resourceName)).thenReturn(path);
+        InputStream stream = accessor.getClass().getClassLoader().getResourceAsStream(resourceName);
+        Mockito.when(accessor.getResourceInputStream(resourceName)).thenReturn(stream);
         ExerciseDao dao = new ExerciseDaoCsv(resourceName, accessor);
         List<Exercise> realExercises = dao.getExercises();
         Assertions.assertEquals(expectedExercises, realExercises);

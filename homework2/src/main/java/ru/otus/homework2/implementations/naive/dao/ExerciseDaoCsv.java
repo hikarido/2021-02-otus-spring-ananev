@@ -3,7 +3,7 @@ package ru.otus.homework2.implementations.naive.dao;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import ru.otus.homework2.core.ResourceAccessor;
-import ru.otus.homework2.core.ThereIsNoSuchResource;
+import ru.otus.homework2.core.CantGetAccessToResource;
 import ru.otus.homework2.core.dao.CantGetExercisesException;
 import ru.otus.homework2.core.dao.ExerciseDao;
 import ru.otus.homework2.core.domain.Answer;
@@ -13,10 +13,7 @@ import ru.otus.homework2.implementations.naive.domain.AnswerImpl;
 import ru.otus.homework2.implementations.naive.domain.ExerciseImpl;
 import ru.otus.homework2.implementations.naive.domain.QuestionImpl;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -60,10 +57,9 @@ public final class ExerciseDaoCsv implements ExerciseDao {
     }
 
     private List<Exercise> load() {
-        try {
-            Path pathToCsv = resourceAccessor.getResourcePath(exerciseResourceName);
-            return parseCsv(pathToCsv);
-        } catch (IOException | ThereIsNoSuchResource e) {
+        try(InputStream stream = resourceAccessor.getResourceInputStream(exerciseResourceName)){
+            return parseCsv(stream);
+        } catch (IOException | CantGetAccessToResource e) {
             throw new CantGetExercisesException("Can't get access to file: " + exerciseResourceName, e);
         } catch (IllegalStateException e) {
             throw new CantGetExercisesException(
@@ -71,11 +67,8 @@ public final class ExerciseDaoCsv implements ExerciseDao {
         }
     }
 
-    private List<Exercise> parseCsv(Path pathToCsv) throws IOException {
-        if (!Files.isReadable(pathToCsv) || !Files.isRegularFile(pathToCsv)) {
-            throw new IOException("path: " + pathToCsv.toString() + " isn't readable");
-        }
-        try (Reader in = Files.newBufferedReader(pathToCsv)) {
+    private List<Exercise> parseCsv(InputStream stream) throws IOException {
+        try (Reader in = new BufferedReader(new InputStreamReader(stream))) {
             List<Exercise> exercises = new ArrayList<>();
             Iterable<CSVRecord> records = CSVFormat.DEFAULT.parse(in);
             for (CSVRecord record : records) {
