@@ -1,6 +1,6 @@
 package ru.otus.homework2.core;
 
-public class ThereIsNoSuchResource extends RuntimeException{
+public class CantGetAccessToResource extends RuntimeException{
     public static class Builder{
         private Throwable cause = null;
         private String resourceName = "";
@@ -20,12 +20,12 @@ public class ThereIsNoSuchResource extends RuntimeException{
             return this;
         }
 
-        public ThereIsNoSuchResource build(){
-            return new ThereIsNoSuchResource(this);
+        public CantGetAccessToResource build(){
+            return new CantGetAccessToResource(this);
         }
     }
 
-    private ThereIsNoSuchResource(Builder builder){
+    private CantGetAccessToResource(Builder builder){
         super(builder.message + builder.resourceName, builder.cause);
     }
 }
