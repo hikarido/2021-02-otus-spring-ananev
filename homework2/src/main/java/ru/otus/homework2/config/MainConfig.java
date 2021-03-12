@@ -1,6 +1,8 @@
 package ru.otus.homework2.config;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 import ru.otus.homework2.core.ConsoleExam;
 import ru.otus.homework2.core.ResourceAccessor;
 import ru.otus.homework2.core.dao.PersonDao;
@@ -13,7 +15,14 @@ import ru.otus.homework2.implementations.naive.dao.PersonDaoImpl;
 import ru.otus.homework2.implementations.naive.domain.ExamImpl;
 
 @Configuration
+@PropertySource("homework2.properties")
 public class MainConfig {
+    @Value("${examLength}")
+    private int examLength;
+
+    @Value("${shouldAnswerToPass}")
+    private int shouldAnswerToPass;
+
     @Bean
     ExerciseDao exerciseDao(ResourceAccessor resourceAccessor){
         return new ExerciseDaoCsv("exercises.csv", resourceAccessor);
@@ -31,7 +40,7 @@ public class MainConfig {
 
     @Bean
     Exam exam(ExerciseDao exerciseDao){
-        return new ExamImpl(exerciseDao, 5, 0);
+        return new ExamImpl(exerciseDao, examLength, shouldAnswerToPass);
     }
 
     @Bean
