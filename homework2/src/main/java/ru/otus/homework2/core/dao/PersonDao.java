@@ -4,15 +4,14 @@ import ru.otus.homework2.core.domain.Person;
 
 import java.util.Optional;
 
-public interface PersnonDao {
+public interface PersonDao {
     /**
-     * Add person to backend. If person equals adding person is occurred
-     * in backend new person will not be added
-     * @param person person which will be added
-     * @return true if person was added, false if person already exist,
-     * therefore adding such person can involve ambiguity
+     * create new person in backend
+     * @param firstName firstName
+     * @param secondName secondName
+     * @return newly created person
      */
-    boolean addPerson(Person person);
+    Person addPerson(String firstName, String secondName);
 
     /**
      * Search for such person in backend.
