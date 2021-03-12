@@ -16,11 +16,18 @@ public class ExamImpl implements Exam {
     private final HashMap<Exercise, List<Answer>> answersGivenByUser;
 
     public ExamImpl(ExerciseDao exerciseDao, int howManyQuestionsMustBeQueried, int howManyRightAnswersStudentShouldGiveToPassExam) {
+        checkCorrectnessOfExamSettings(howManyQuestionsMustBeQueried, howManyRightAnswersStudentShouldGiveToPassExam);
         this.exerciseDao = exerciseDao;
         this.howManyQuestionsMustBeQueried = howManyQuestionsMustBeQueried;
         this.howManyRightAnswersStudentShouldGiveToPassExam =
                 howManyRightAnswersStudentShouldGiveToPassExam;
         this.answersGivenByUser = new HashMap<>();
+    }
+
+    private void checkCorrectnessOfExamSettings(int howManyQuestionsMustBeQueried, int howManyRightAnswersStudentShouldGiveToPassExam) {
+        if(howManyQuestionsMustBeQueried < howManyRightAnswersStudentShouldGiveToPassExam){
+            throw new IllegalArgumentException("Must be no less questions to answer then pass threshold of exam.");
+        }
     }
 
     @Override
