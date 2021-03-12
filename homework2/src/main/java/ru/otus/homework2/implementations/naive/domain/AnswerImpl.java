@@ -35,7 +35,7 @@ public class AnswerImpl implements Answer {
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return Objects.hash(content, isRight);
     }
 }
