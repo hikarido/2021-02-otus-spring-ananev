@@ -5,6 +5,7 @@ import ru.otus.homework2.core.domain.Exercise;
 import ru.otus.homework2.core.domain.Question;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ExerciseImpl implements Exercise {
@@ -45,5 +46,10 @@ public class ExerciseImpl implements Exercise {
         Exercise o = (Exercise) other;
         return this.getQuestion().equals(o.getQuestion())
                 & this.getAnswerChoices().equals(o.getAnswerChoices());
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(question, answers);
     }
 }

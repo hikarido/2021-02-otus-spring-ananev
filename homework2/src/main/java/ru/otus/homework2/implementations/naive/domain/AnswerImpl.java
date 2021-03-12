@@ -2,6 +2,8 @@ package ru.otus.homework2.implementations.naive.domain;
 
 import ru.otus.homework2.core.domain.Answer;
 
+import java.util.Objects;
+
 public class AnswerImpl implements Answer {
 
     private String content;
@@ -30,5 +32,10 @@ public class AnswerImpl implements Answer {
 
         Answer o = (Answer) other;
         return this.getText().equals(o.getText()) && this.isRight() == o.isRight();
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(content, isRight);
     }
 }

@@ -28,4 +28,9 @@ public class QuestionImpl implements Question {
         Question o = (Question) other;
         return Objects.equals(this.getText(), o.getText());
     }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(content);
+    }
 }
