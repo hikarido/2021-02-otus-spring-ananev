@@ -22,3 +22,4 @@ The training repository is located on [github](https://github.com/OtusTeam/Sprin
    * @SpringBootApplication
    * @ConfigurationProperties
    * yaml as property file format
+   * @ConstructorBinding, @ConfigurationPropertiesScan, @EnableConfigurationProperties
