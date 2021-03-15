@@ -1,0 +1,4 @@
+exam:
+  settings:
+    length: 5
+    should-answer-to-pass: 2

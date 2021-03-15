@@ -1,13 +1,16 @@
-package ru.otis.homework3;
+package ru.otus;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import ru.otus.homework3.core.ConsoleExam;
 
 @SpringBootApplication
 public class Homework3Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Homework3Application.class, args);
+		var context = SpringApplication.run(Homework3Application.class, args);
+		var exam = context.getBean(ConsoleExam.class);
+		exam.performExam();
 	}
 
 }
