@@ -1,21 +1,19 @@
 package ru.otus.homework3.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.context.properties.ConstructorBinding;
 
-@Component
 @ConfigurationProperties(prefix = "exam.settings")
+@ConstructorBinding
 public class ExamSettingsImpl implements ExamSettings {
-    private int length;
-    private int shouldAnswerToPass;
+    private final int length;
+    private final int shouldAnswerToPass;
 
-    public void setLength(int length) {
+    public ExamSettingsImpl(int length, int shouldAnswerToPass) {
         this.length = length;
-    }
-
-    public void setShouldAnswerToPass(int shouldAnswerToPass) {
         this.shouldAnswerToPass = shouldAnswerToPass;
     }
+
     @Override
     public int getExamLength() {
         return length;
@@ -27,7 +25,7 @@ public class ExamSettingsImpl implements ExamSettings {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Exam settings are: "
                 + "length: " + length
                 + "should answer: " + shouldAnswerToPass;
