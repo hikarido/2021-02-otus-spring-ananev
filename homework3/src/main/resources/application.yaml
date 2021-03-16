@@ -2,3 +2,5 @@ exam:
   settings:
     length: 5
     should-answer-to-pass: 2
+app:
+  language-tag: "ru-RU"

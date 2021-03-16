@@ -16,8 +16,9 @@ import ru.otus.homework3.implementations.naive.domain.ExamImpl;
 @Configuration
 public class MainConfig {
     @Bean
-    ExerciseDao exerciseDao(ResourceAccessor resourceAccessor) {
-        return new ExerciseDaoCsv("exercises.csv", resourceAccessor);
+    ExerciseDao exerciseDao(ResourceAccessor resourceAccessor, AppSettings settings) {
+        final String exercisesFileName = "exercises_" + settings.getAppLocale() + ".csv";
+        return new ExerciseDaoCsv(exercisesFileName, resourceAccessor);
     }
 
     @Bean
