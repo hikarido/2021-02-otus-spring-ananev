@@ -45,10 +45,4 @@ public class MainConfig {
     ConsoleExam consoleExam(PersonDao personDao, ExerciseDao exerciseDao, Exam exam) {
         return new ConsoleExamImpl(personDao, exerciseDao, exam);
     }
-
-// TODO uncomment this and spring will not be able create context
-//    @Bean
-//    AppSettings appSettings(){
-//        return new AppSettingsImpl();
-//    }
 }
