@@ -1,5 +1,6 @@
 package ru.otus.homework3.config;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.otus.homework3.core.ConsoleExam;
@@ -42,7 +43,7 @@ public class MainConfig {
     }
 
     @Bean
-    ConsoleExam consoleExam(PersonDao personDao, ExerciseDao exerciseDao, Exam exam) {
-        return new ConsoleExamImpl(personDao, exerciseDao, exam);
+    ConsoleExam consoleExam(PersonDao personDao, ExerciseDao exerciseDao, Exam exam, MessageSource messageSource,  AppSettings settings) {
+    return new ConsoleExamImpl(personDao, exerciseDao, exam, messageSource, settings.getAppLocale());
     }
 }
