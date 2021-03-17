@@ -1,8 +1,8 @@
 package ru.otus.homework3.implementations.naive.domain;
 
+import ru.otus.homework3.core.dao.ExerciseDao;
 import ru.otus.homework3.core.domain.Answer;
 import ru.otus.homework3.core.domain.Exam;
-import ru.otus.homework3.core.dao.ExerciseDao;
 import ru.otus.homework3.core.domain.Exercise;
 
 import java.util.HashMap;
@@ -22,12 +22,6 @@ public class ExamImpl implements Exam {
         this.howManyRightAnswersStudentShouldGiveToPassExam =
                 howManyRightAnswersStudentShouldGiveToPassExam;
         this.answersGivenByUser = new HashMap<>();
-    }
-
-    private void checkCorrectnessOfExamSettings(int howManyQuestionsMustBeQueried, int howManyRightAnswersStudentShouldGiveToPassExam) {
-        if (howManyQuestionsMustBeQueried < howManyRightAnswersStudentShouldGiveToPassExam) {
-            throw new IllegalArgumentException("Must be no less questions to answer then pass threshold of exam.");
-        }
     }
 
     @Override
@@ -51,4 +45,11 @@ public class ExamImpl implements Exam {
 
         return countOfCorrectlyAnsweredQuestions >= this.howManyRightAnswersStudentShouldGiveToPassExam;
     }
+
+    private void checkCorrectnessOfExamSettings(int howManyQuestionsMustBeQueried, int howManyRightAnswersStudentShouldGiveToPassExam) {
+        if (howManyQuestionsMustBeQueried < howManyRightAnswersStudentShouldGiveToPassExam) {
+            throw new IllegalArgumentException("Must be no less questions to answer then pass threshold of exam.");
+        }
+    }
+
 }
