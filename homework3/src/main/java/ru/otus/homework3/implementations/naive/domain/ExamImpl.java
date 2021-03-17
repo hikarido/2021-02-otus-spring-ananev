@@ -13,7 +13,7 @@ public class ExamImpl implements Exam {
     private final ExerciseDao exerciseDao;
     private final int howManyQuestionsMustBeQueried;
     private final int howManyRightAnswersStudentShouldGiveToPassExam;
-    private final HashMap<Exercise, List<Answer>> answersGivenByUser;
+private final Map<Exercise, List<Answer>> answersGivenByUser;
 
     public ExamImpl(ExerciseDao exerciseDao, int howManyQuestionsMustBeQueried, int howManyRightAnswersStudentShouldGiveToPassExam) {
         this.exerciseDao = exerciseDao;
