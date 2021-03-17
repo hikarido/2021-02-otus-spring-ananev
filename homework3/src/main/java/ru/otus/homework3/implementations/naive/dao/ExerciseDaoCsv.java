@@ -52,6 +52,7 @@ public final class ExerciseDaoCsv implements ExerciseDao {
         this.exerciseResourceName = exerciseResourceName;
     }
 
+    @Override
     public List<Exercise> getExercises() {
         return load();
     }
