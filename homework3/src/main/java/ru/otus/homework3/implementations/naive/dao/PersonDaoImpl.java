@@ -6,9 +6,10 @@ import ru.otus.homework3.implementations.naive.domain.PersonImpl;
 
 import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 public class PersonDaoImpl implements PersonDao {
-    private HashSet<Person> persons;
+    private Set<Person> persons;
 
     public PersonDaoImpl() {
         this.persons = new HashSet<>();
