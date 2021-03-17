@@ -24,13 +24,18 @@ public class ExamImpl implements Exam {
     }
 
     /**
-     * @throws IllegalArgumentException if wrong exam settings was used
      * @return list of {@link Exercise}
+     * @throws IllegalArgumentException if wrong exam settings was used
      */
     @Override
     public List<Exercise> getExercises() {
         checkCorrectnessOfExamSettings(howManyQuestionsMustBeQueried, howManyRightAnswersStudentShouldGiveToPassExam);
-        return exerciseDao.getExercises().subList(0, howManyQuestionsMustBeQueried);
+        List<Exercise> exercises = exerciseDao.getExercises();
+        if (howManyQuestionsMustBeQueried > exercises.size()) {
+            throw new IllegalArgumentException("There is no such amount of exercises. " +
+                    "You should require less exercises for correct behaviour");
+        }
+        return exercises.subList(0, howManyQuestionsMustBeQueried);
     }
 
     @Override
