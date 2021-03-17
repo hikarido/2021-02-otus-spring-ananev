@@ -16,7 +16,7 @@ public class ConsoleExamImpl implements ConsoleExam {
     private final PersonDao personDao;
     private final ExerciseDao exerciseDao;
     private final Exam exam;
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
     MessageSource messageSource;
     Locale locale;
 
