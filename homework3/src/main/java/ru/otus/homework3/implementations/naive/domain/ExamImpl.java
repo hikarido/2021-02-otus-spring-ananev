@@ -16,7 +16,6 @@ public class ExamImpl implements Exam {
     private final HashMap<Exercise, List<Answer>> answersGivenByUser;
 
     public ExamImpl(ExerciseDao exerciseDao, int howManyQuestionsMustBeQueried, int howManyRightAnswersStudentShouldGiveToPassExam) {
-        checkCorrectnessOfExamSettings(howManyQuestionsMustBeQueried, howManyRightAnswersStudentShouldGiveToPassExam);
         this.exerciseDao = exerciseDao;
         this.howManyQuestionsMustBeQueried = howManyQuestionsMustBeQueried;
         this.howManyRightAnswersStudentShouldGiveToPassExam =
@@ -24,8 +23,13 @@ public class ExamImpl implements Exam {
         this.answersGivenByUser = new HashMap<>();
     }
 
+    /**
+     * @throws IllegalArgumentException if wrong exam settings was used
+     * @return list of {@link Exercise}
+     */
     @Override
     public List<Exercise> getExercises() {
+        checkCorrectnessOfExamSettings(howManyQuestionsMustBeQueried, howManyRightAnswersStudentShouldGiveToPassExam);
         return exerciseDao.getExercises().subList(0, howManyQuestionsMustBeQueried);
     }
 
