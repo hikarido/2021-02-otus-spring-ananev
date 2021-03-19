@@ -1,45 +1,23 @@
-# Домашнее задание 2
+# Домашнее задание 3
 
-# Запуск
+Перенести приложение для тестирования студентов на Spring Boot
 
-* java -cp target/homework2-1.0-SNAPSHOT.jar ru.otus.Main
+# Цель
+использовать возможности Spring Boot, чтобы разрабатывать современные приложения, 
+так, как их сейчас и разрабатывают. Результат: Production-ready приложение на Spring Boot
 
-# Текст задачи
+---
+Это домашнее задание выполняется на основе предыдущего.
 
-Приложение по проведению тестирования студентов (с самим тестированием)
-Цель: Цель: конфигурировать Spring-приложения современным способом, как это и делается в современном мире
-Результат: готовое современное приложение на чистом Spring
-Новый функционал:
+* Создать проект, используя Spring Boot Initializr (https://start.spring.io)
+* Перенести приложение проведения опросов из прошлого домашнего задания.
+* Перенести все свойства в application.yml
+* Локализовать выводимые сообщения и вопросы (в CSV-файле). MesageSource должен быть из автоконфигурации Spring Boot.
+* Сделать собственный баннер для приложения.
+* Перенести тесты и использовать spring-boot-test-starter для тестирования
+* Опционально:
+    * использовать ANSI-цвета для баннера.
+     * если Ваш язык отличается от русского и английского - локализовать в нём.
 
-Программа должна спросить у пользователя фамилию и имя, спросить 5 вопросов из CSV-файла и вывести результат тестирования.
+* Коммитить wrapper или нет в репозиторий - решать Вам.
 
-Выполняется на основе предыдущего домашнего задания + , собственно, сам функционал тестирования.
-
-Требования:
-1. Переписать конфигурацию в виде Java + Annotation-based конфигурации.
-2. Добавить функционал тестирования студента.
-3. Добавьте файл настроек для приложения тестирования студентов.
-4. В конфигурационный файл можно поместить путь до CSV-файла, количество правильных ответов для зачёта - на Ваше усмотрение.
-5. Если Вы пишите интеграционные тесты, то не забудьте добавить аналогичный файл и для тестов.
-6. Scanner, PrintStream и другие стандартные типы в контекст класть не нужно!
-7. Ввод-вывод на английском языке.
-8. Помним, "без фанатизма" :)
-
-# take aways
-
-* how to run debug from mvn
-  * set breakpoints where you want in IDEA
-  * mvn package -Dmaven.surefire.debug 
-  * go Run -> Attach to Process -> and attach to process on 5005 port 
-* how to run certain test 
-  *  mvn -Dtest=ResourceAccessorImplTest#resultPathEqualToExpectedPath test
-* Difference between Class.getResource and similar action trough ClassLoader
-  * In short: Class represent path as relative or absolute, ClassLoader things that path is always absolute. 
-  * Full: [Answer](https://stackoverflow.com/a/6608848/5542559)
-* faced with IDEA [issue](https://youtrack.jetbrains.com/issue/IDEA-238891). Only newly installation of idea was helpful
-* best [answer](https://stackoverflow.com/a/20389418/5542559) to question "Why it works in ide but doesn't in jar after package. Or why resource can't be accessed in jar"
-
-# Questions
-
-* How to test ExerciseDaoCsv by unit tests? Any test I have written can be treated as integration test. 
-  * for example this test: ReadedExercisesMustBeEqualExercisesInFile
