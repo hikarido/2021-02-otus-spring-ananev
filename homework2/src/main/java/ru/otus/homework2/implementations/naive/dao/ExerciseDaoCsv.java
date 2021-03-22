@@ -52,12 +52,13 @@ public final class ExerciseDaoCsv implements ExerciseDao {
         this.exerciseResourceName = exerciseResourceName;
     }
 
+    @Override
     public List<Exercise> getExercises() {
         return load();
     }
 
     private List<Exercise> load() {
-        try(InputStream stream = resourceAccessor.getResourceInputStream(exerciseResourceName)){
+        try (InputStream stream = resourceAccessor.getResourceInputStream(exerciseResourceName)) {
             return parseCsv(stream);
         } catch (IOException | CantGetAccessToResource e) {
             throw new CantGetExercisesException("Can't get access to file: " + exerciseResourceName, e);

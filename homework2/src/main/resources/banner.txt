@@ -1,0 +1,21 @@
+            ``./yhdmdyo-````
+        ````.yNMMMmmNMMMh-  ````
+      `.`  /NMMs-    .+NMM:    `.`
+    `.    -MMN-  .oo:  /MMd       .`
+   .`     sMMs  `NMd-  oMMh        `.
+  .       oMMy  `mMNhymMMd.          .
+ .        .NMM/  `/ymmdy:             .
+``         -NMMy-         `---.`      `.
+.           `oNMMNho++oydNMMMMMMmy/    .   ${application.title}
+.      .--.   `+NMMMMMMMMho+//+yNMMN+  .   ${application.formatted-version}
+.   -yNMMMMNy-  .mMMMMN+`        :mMMy .
+.  sMMNs//oNMM:  :MMMd.  -ymNNh:  `mMM/.
+.`/MMm`  :`oMMs  .MMM.  /MMmoyMM.  sMMs.   Powered by Spring boot
+ -sMMy  .NMMMh`  oMMh   dMM/ `+:  .mMM+    ${spring-boot.formatted-version}
+  +MMN:  `--`   oMMN.   +MMm/. `-oNMMy
+   oMMMh/-``.:smMMd.     /mMMMMMMMMh/
+    -ymMMMMMMMMNh:         ./osso/-.
+      .-/+oo+/-                 ..
+        ````                ````
+           ``````````````````
+
