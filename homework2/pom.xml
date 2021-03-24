@@ -11,8 +11,8 @@
     <groupId>ru.otis</groupId>
     <artifactId>homework3</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>homework3</name>
-    <description>homework 3</description>
+    <name>homework4</name>
+    <description>homework 4 - use Spring shell and spring test</description>
     <properties>
         <java.version>11</java.version>
         <org.apache.commons.version>1.8</org.apache.commons.version>
