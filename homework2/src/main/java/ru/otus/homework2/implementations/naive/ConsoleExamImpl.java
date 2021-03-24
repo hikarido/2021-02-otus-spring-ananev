@@ -1,15 +1,16 @@
 package ru.otus.homework2.implementations.naive;
 
-import org.springframework.context.MessageSource;
 import ru.otus.homework2.core.ConsoleExam;
-import ru.otus.homework2.core.dao.ExerciseDao;
 import ru.otus.homework2.core.dao.PersonDao;
 import ru.otus.homework2.core.domain.Answer;
 import ru.otus.homework2.core.domain.Exam;
 import ru.otus.homework2.core.domain.Exercise;
 import ru.otus.homework2.core.domain.Person;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ConsoleExamImpl implements ConsoleExam {
@@ -23,10 +24,7 @@ public class ConsoleExamImpl implements ConsoleExam {
 
     public ConsoleExamImpl(
             PersonDao personDao,
-            ExerciseDao exerciseDao,
-            Exam exam,
-            MessageSource messageSource,
-            Locale locale) {
+            Exam exam) {
         this.personDao = personDao;
         this.exam = exam;
         init();
@@ -97,7 +95,7 @@ public class ConsoleExamImpl implements ConsoleExam {
                 .collect(Collectors.toList());
 
         List<Answer> chosenAnswers = new ArrayList<>();
-        for(Integer index: answersIndexes){
+        for (Integer index : answersIndexes) {
             chosenAnswers.add(currentAnswerChoices.get(index));
         }
         exam.answer(currentExercise, chosenAnswers);
