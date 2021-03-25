@@ -29,7 +29,7 @@ class ApplicationShellTest {
     void loginWithoutParams() {
         Mockito.when(consoleExam.getCurrentUserName()).thenReturn(USER_FIRST_NAME + " " + USER_SECOND_NAME);
         final String actual = (String) shell.evaluate(() -> SHORT_CUT_FOR_LOGIN_CMD + " " + USER_FIRST_NAME + " " + USER_SECOND_NAME);
-        final String expected = "Hello " + USER_FIRST_NAME + " " + USER_SECOND_NAME;
+        final String expected = "Welcome " + USER_FIRST_NAME + " " + USER_SECOND_NAME;
         Assertions.assertEquals(expected, actual.trim());
     }
 
