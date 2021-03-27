@@ -1,0 +1,10 @@
+spring:
+  messages:
+    fallback-to-system-locale: false
+
+exam:
+  settings:
+    length: 5
+    should-answer-to-pass: 2
+app:
+  language-tag:  en-EN
