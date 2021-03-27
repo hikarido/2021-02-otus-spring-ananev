@@ -11,8 +11,6 @@ public class Homework3Application {
 
     public static void main(String[] args) {
         var context = SpringApplication.run(Homework3Application.class, args);
-        var exam = context.getBean(ConsoleExam.class);
-        exam.performExam();
     }
 
 }
