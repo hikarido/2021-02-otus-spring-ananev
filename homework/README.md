@@ -40,11 +40,12 @@
 # Ход работ
 
 * ссылки
-  * https://www.baeldung.com/spring-boot-h2-database
-  * https://www.baeldung.com/spring-jdbc-jdbctemplate
-  * https://www.pgexercises.com/questions/joins/simplejoin.html
-  * 
-
+  * [how to run h2 in spring boot](https://www.baeldung.com/spring-boot-h2-database)
+  * [baeldung soring data jdbc tutorial](https://www.baeldung.com/spring-jdbc-jdbctemplate)
+  * [sql language online trainer](https://www.pgexercises.com/questions/joins/simplejoin.html)
+  * [spring's exception for dao](https://docs.spring.io/spring-framework/docs/5.3.4/reference/html/data-access.html#dao-exceptions)
+  * [baeldung tutorial source code repo](https://github.com/eugenp/tutorials)
+  
 * основной запрос
 ```sql
 select book.title as `Название`, author.full_name as `Писатель`, genre.name as `Жанр` 
