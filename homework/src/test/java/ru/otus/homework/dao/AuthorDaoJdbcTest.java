@@ -30,7 +30,7 @@ class AuthorDaoJdbcTest {
     @Test
     void read() {
         final Author expected = new Author(1L, "Hero Marin");
-        final Optional<Author> retrieved = authorDao.read(expected);
+        final Optional<Author> retrieved = authorDao.read(expected.getId());
         if (retrieved.isEmpty()) {
             Assertions.fail("Entity must presence");
         }
@@ -53,7 +53,7 @@ class AuthorDaoJdbcTest {
     void update() {
         Author expected = new Author(1L, "Hero Marin Updated");
         authorDao.update(expected);
-        final Optional<Author> actual = authorDao.read(expected);
+        final Optional<Author> actual = authorDao.read(expected.getId());
         if(actual.isEmpty()){
             Assertions.fail("Entity must presence");
         }
@@ -64,13 +64,13 @@ class AuthorDaoJdbcTest {
     void delete() {
         Author expected = new Author(1L, "Hero Marin");
         Assertions.assertTrue(authorDao.delete(expected));
-        Assertions.assertTrue(authorDao.read(expected).isEmpty());
+        Assertions.assertTrue(authorDao.read(expected.getId()).isEmpty());
     }
 
     @Test
     void readAbsenceEntity() {
         Author expected = new Author(1L, "Hero Marin");
         Assertions.assertTrue(authorDao.delete(expected));
-        Assertions.assertTrue(authorDao.read(expected).isEmpty());
+        Assertions.assertTrue(authorDao.read(expected.getId()).isEmpty());
     }
 }
