@@ -3,15 +3,15 @@ package ru.otus.homework.domain;
 import java.util.Objects;
 
 public class Genre {
-    private final int id;
+    private final Long id;
     private final String name;
 
-    public Genre(int id, String name) {
+    public Genre(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -24,7 +24,7 @@ public class Genre {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Genre genre = (Genre) o;
-        return getId() == genre.getId() & getName().equals(genre.getName());
+        return getId().equals(genre.getId()) & getName().equals(genre.getName());
     }
 
     @Override

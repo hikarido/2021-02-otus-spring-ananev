@@ -3,27 +3,27 @@ package ru.otus.homework.domain;
 import java.util.Objects;
 
 public class Book {
-    private final int id;
-    private final int authorId;
-    private final int genreId;
+    private final Long id;
+    private final Long authorId;
+    private final Long genreId;
     private final String title;
 
-    public Book(int id, int authorId, int genreId, String title) {
+    public Book(Long id, Long authorId, Long genreId, String title) {
         this.id = id;
         this.authorId = authorId;
         this.genreId = genreId;
         this.title = title;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public int getAuthorId() {
+    public Long getAuthorId() {
         return authorId;
     }
 
-    public int getGenreId() {
+    public Long getGenreId() {
         return genreId;
     }
 
@@ -42,9 +42,9 @@ public class Book {
         }
 
         Book other = (Book) o;
-        return getId() == other.getId()
-                & getAuthorId() == other.getAuthorId()
-                & getGenreId() == other.getGenreId()
+        return getId().equals(other.getId())
+                & getAuthorId().equals(other.getAuthorId())
+                & getGenreId().equals(other.getGenreId())
                 & getTitle().equals(other.getTitle());
     }
 
