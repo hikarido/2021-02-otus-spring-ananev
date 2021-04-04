@@ -4,14 +4,14 @@ import java.util.Objects;
 
 public class Book {
     private final Long id;
-    private final Long authorId;
-    private final Long genreId;
+    private final Author author;
+    private final Genre genre;
     private final String title;
 
-    public Book(Long id, Long authorId, Long genreId, String title) {
+    public Book(Long id, Author author, Genre genre, String title) {
         this.id = id;
-        this.authorId = authorId;
-        this.genreId = genreId;
+        this.author = author;
+        this.genre = genre;
         this.title = title;
     }
 
@@ -19,12 +19,12 @@ public class Book {
         return id;
     }
 
-    public Long getAuthorId() {
-        return authorId;
+    public Author getAuthor() {
+        return author;
     }
 
-    public Long getGenreId() {
-        return genreId;
+    public Genre getGenre() {
+        return genre;
     }
 
     public String getTitle() {
@@ -43,13 +43,13 @@ public class Book {
 
         Book other = (Book) o;
         return getId().equals(other.getId())
-                & getAuthorId().equals(other.getAuthorId())
-                & getGenreId().equals(other.getGenreId())
+                & getAuthor().equals(other.getAuthor())
+                & getGenre().equals(other.getGenre())
                 & getTitle().equals(other.getTitle());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, authorId, genreId, title);
+        return Objects.hash(id, author, genre, title);
     }
 }

@@ -10,14 +10,16 @@ class BookTest {
     private Book x;
     private Book y;
     final long expectedId = 1;
-    final long expectedGenreId = 2;
-    final long expectedAuthorId = 3;
-    final String expectedTitle = "Long Story";
+    private final String expectedTitle = "Long Story";
+    private Author expectedAuthor;
+    private Genre expectedGenre;
 
     @BeforeEach
     void beforeEach(){
-        this.x = new Book(expectedId, expectedAuthorId, expectedGenreId, expectedTitle);
-        this.y = new Book(expectedId, expectedAuthorId, expectedGenreId, expectedTitle);
+        expectedAuthor = new Author(10L, "title writer");
+        expectedGenre = new Genre(10L, "fable");
+        this.x = new Book(expectedId, expectedAuthor, expectedGenre, expectedTitle);
+        this.y = new Book(expectedId, expectedAuthor, expectedGenre, expectedTitle);
     }
 
     @Test
@@ -27,12 +29,12 @@ class BookTest {
 
     @Test
     void getAuthorId() {
-        Assertions.assertEquals(expectedAuthorId, x.getAuthorId());
+        Assertions.assertEquals(expectedAuthor.getId(), x.getAuthor().getId());
     }
 
     @Test
     void getGenreId() {
-        Assertions.assertEquals(expectedGenreId, x.getGenreId());
+        Assertions.assertEquals(expectedGenre.getId(), x.getGenre().getId());
     }
 
     @Test
