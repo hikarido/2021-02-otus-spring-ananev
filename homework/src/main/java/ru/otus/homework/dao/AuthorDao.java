@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface AuthorDao {
     Author create(Author author);
 
-    Optional<Author> read(Author author);
+    Optional<Author> read(long id);
 
     Collection<Author> readAll();
 

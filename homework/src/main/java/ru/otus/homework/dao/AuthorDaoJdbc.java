@@ -14,8 +14,8 @@ import java.util.Optional;
 
 public class AuthorDaoJdbc implements AuthorDao {
 
-    private NamedParameterJdbcOperations operations;
-    private AuthorRowMapper mapper;
+    private final NamedParameterJdbcOperations operations;
+    private final AuthorRowMapper mapper;
 
     public AuthorDaoJdbc(NamedParameterJdbcOperations operations) {
         this.operations = operations;
@@ -32,8 +32,8 @@ public class AuthorDaoJdbc implements AuthorDao {
     }
 
     @Override
-    public Optional<Author> read(Author author) {
-        SqlParameterSource params = new MapSqlParameterSource().addValue("id", author.getId());
+    public Optional<Author> read(long id) {
+        SqlParameterSource params = new MapSqlParameterSource().addValue("id", id);
         try{
             return Optional.ofNullable(operations.queryForObject("select * from author where `id`=:id", params, mapper));
         }
