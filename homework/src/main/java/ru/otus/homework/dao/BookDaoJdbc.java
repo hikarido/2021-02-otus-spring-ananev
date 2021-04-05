@@ -32,8 +32,12 @@ public class BookDaoJdbc implements BookDao {
 
     @Override
     public Book create(Book newBook) {
-        authorDao.create(newBook.getAuthor());
-        genreDao.create(newBook.getGenre());
+        if (authorDao.read(newBook.getAuthor().getId()).isEmpty()) {
+            authorDao.create(newBook.getAuthor());
+        }
+        if (genreDao.read(newBook.getGenre().getId()).isEmpty()) {
+            genreDao.create(newBook.getGenre());
+        }
         SqlParameterSource params = new MapSqlParameterSource()
                 .addValue("id", newBook.getId())
                 .addValue("author_id", newBook.getAuthor().getId())
@@ -66,7 +70,7 @@ public class BookDaoJdbc implements BookDao {
                 .addValue("genre_id", book.getGenre().getId());
 
         operations.update(
-                "update book set `author_id`=:author_id, `genre_id`=:genre_id, `title`=:title",
+                "update book set `author_id`=:author_id, `genre_id`=:genre_id, `title`=:title where `id`=:id",
                 params
         );
         authorDao.update(book.getAuthor());
