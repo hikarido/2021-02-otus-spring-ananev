@@ -12,7 +12,6 @@ public class Application {
 
     public static void main(String[] args) throws SQLException {
         ApplicationContext applicationContext = SpringApplication.run(Application.class);
-        Console.main(args);
     }
 
 }
