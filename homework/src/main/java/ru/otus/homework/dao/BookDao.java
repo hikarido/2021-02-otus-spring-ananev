@@ -2,6 +2,7 @@ package ru.otus.homework.dao;
 
 import ru.otus.homework.domain.Book;
 
+import java.util.Collection;
 import java.util.Optional;
 
 public interface BookDao {
@@ -36,7 +37,7 @@ public interface BookDao {
      * reads all books from underlying storage
      * @return returns one or more books or no books at all if they are not presence in storage
      */
-    Iterable<Book> findAll();
+    Collection<Book> findAll();
 
     /**
      * @return amount of entities of Book in underlying storage
