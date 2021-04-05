@@ -35,8 +35,8 @@ public class Genre {
     @Override
     public String toString() {
         return "Genre{" +
-                "id=" + getId() +
-                ", name='" + getName() + '\'' +
+                "genre id=" + getId() +
+                ", genre name='" + getName() + '\'' +
                 '}';
     }
 }

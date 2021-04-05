@@ -21,7 +21,10 @@ public class Author {
 
     @Override
     public String toString() {
-        return String.format("id: %d, fullName: %s", id, fullName);
+        return "Author{" +
+                "author id=" + id +
+                ", author fullName='" + fullName + '\'' +
+                '}';
     }
 
     @Override
