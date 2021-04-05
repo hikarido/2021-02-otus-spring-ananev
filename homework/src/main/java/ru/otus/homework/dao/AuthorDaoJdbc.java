@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.stereotype.Repository;
 import ru.otus.homework.domain.Author;
 
 import java.sql.ResultSet;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Optional;
 
+@Repository
 public class AuthorDaoJdbc implements AuthorDao {
 
     private final NamedParameterJdbcOperations operations;
