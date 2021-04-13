@@ -21,6 +21,16 @@ import java.util.Set;
 class BookDaoJdbcTest {
 
     private final int BOOKS_COUNT = 4;
+
+    private final Author HERO_MARIN_AUTHOR = new Author(1L, "Hero Marin");
+    private final Author MIHAIL_AFANASIEVICH_BULGAKOV = new Author(2L, "Mihail Afanasievich Bulgakov");
+    private final Author OXANA_GEPPERT = new Author(3L, "Oxana Geppert");
+    private final Author JOHN_RONALD_REUEL_TOLKIEN = new Author(4L, "John Ronald Reuel Tolkien");
+
+    private final Genre SCIENCE_FICTION = new Genre(4L, "science fiction");
+    private final Genre CLASSIC = new Genre(1L, "classic");
+    private final Genre FANTASY = new Genre(3L, "fantasy");
+
     private Author expectedAuthor = new Author(2L, "Mihail Afanasievich Bulgakov");
     private Genre expectedGenre = new Genre(1L, "classic");
     private Book expectedBook = new Book(2L, expectedAuthor, expectedGenre, "The Master and Margarita");
@@ -80,10 +90,10 @@ class BookDaoJdbcTest {
 
     @Test
     void findAll() {
-        Set<Book> books = Set.of(new Book(1L, expectedAuthor, expectedGenre, "The Starcraft hand book"),
-                new Book(2L, expectedAuthor, expectedGenre, "The Master and Margarita"),
-                new Book(3L, expectedAuthor, expectedGenre, "The Community"),
-                new Book(4L, expectedAuthor, expectedGenre, "The Lord Of the rings")
+        Set<Book> books = Set.of(new Book(1L, HERO_MARIN_AUTHOR, SCIENCE_FICTION, "The Starcraft hand book"),
+                new Book(2L, MIHAIL_AFANASIEVICH_BULGAKOV, CLASSIC, "The Master and Margarita"),
+                new Book(3L, OXANA_GEPPERT, SCIENCE_FICTION, "The Community"),
+                new Book(4L, JOHN_RONALD_REUEL_TOLKIEN, FANTASY, "The Lord Of the rings")
         );
         final Set<Book> actual = new HashSet<>(bookDao.findAll());
         Assertions.assertEquals(books, actual);

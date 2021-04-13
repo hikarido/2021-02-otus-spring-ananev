@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 import ru.otus.homework.domain.Author;
 import ru.otus.homework.domain.Book;
@@ -13,7 +14,9 @@ import ru.otus.homework.domain.Genre;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -96,7 +99,32 @@ public class BookDaoJdbc implements BookDao {
 
     @Override
     public Collection<Book> findAll() {
-        return operations.query("select `id`, `author_id`, `genre_id`, `title` from book", mapper);
+        final String selectQuery =
+                "select " +
+                        "book.id as book_id, book.title as book_title, book.author_id as author_id, " +
+                        "author.full_name as author_full_name, book.genre_id as  genre_id, genre.name as genre_name" +
+                        " from book join author on book.author_id = author.id join genre on book.genre_id = genre.id";
+        final SqlRowSet sqlRowSet = operations.getJdbcOperations().queryForRowSet(selectQuery);
+        List<Book> books = new ArrayList<>();
+        while (sqlRowSet.next()) {
+            final Author author = new Author(
+                    sqlRowSet.getLong("AUTHOR_ID"),
+                    sqlRowSet.getString("AUTHOR_FULL_NAME")
+            );
+            final Genre genre = new Genre(
+                    sqlRowSet.getLong("GENRE_ID"),
+                    sqlRowSet.getString("GENRE_NAME")
+            );
+            final Book book = new Book(
+                    sqlRowSet.getLong("BOOK_ID"),
+                    author,
+                    genre,
+                    sqlRowSet.getString("BOOK_TITLE")
+            );
+            books.add(book);
+        }
+
+        return books;
     }
 
     @Override
