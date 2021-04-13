@@ -37,7 +37,7 @@ public class GenreDaoJdbc implements GenreDao {
     public Optional<Genre> read(long id) {
         SqlParameterSource params = new MapSqlParameterSource()
                 .addValue("id", id);
-        List<Genre> genres = operations.query("select * from genre where id = :id", params, mapper);
+        List<Genre> genres = operations.query("select `id`, `name` from genre where id = :id", params, mapper);
         if (genres.isEmpty()) {
             return Optional.empty();
         }
@@ -46,7 +46,7 @@ public class GenreDaoJdbc implements GenreDao {
 
     @Override
     public Collection<Genre> readAll() {
-        return operations.query("select * from genre", mapper);
+        return operations.query("select `id`, `name` from genre", mapper);
     }
 
     @Override
