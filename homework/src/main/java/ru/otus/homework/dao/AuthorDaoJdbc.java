@@ -37,7 +37,7 @@ public class AuthorDaoJdbc implements AuthorDao {
     public Optional<Author> read(long id) {
         SqlParameterSource params = new MapSqlParameterSource().addValue("id", id);
         try{
-            return Optional.ofNullable(operations.queryForObject("select * from author where `id`=:id", params, mapper));
+            return Optional.ofNullable(operations.queryForObject("select `id`, `full_name` from author where `id`=:id", params, mapper));
         }
         catch (EmptyResultDataAccessException e){
             return Optional.empty();
@@ -46,7 +46,7 @@ public class AuthorDaoJdbc implements AuthorDao {
 
     @Override
     public Collection<Author> readAll() {
-        return operations.query("select * from author", mapper);
+        return operations.query("select `id`, `full_name` from author", mapper);
     }
 
     @Override
