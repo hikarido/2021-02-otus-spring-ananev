@@ -45,8 +45,13 @@ public class BookDaoJdbc implements BookDao {
                 .addValue("title", newBook.getTitle());
         operations.update(
                 "insert into book (`id`, `author_id`, `genre_id`, `title`) values (:id, :author_id, :genre_id, :title)",
-                params);
-        return operations.queryForObject("select * from book where `id`=:id", params, mapper);
+                params
+        );
+        return operations.queryForObject(
+                "select `id`, `author_id`, `genre_id`, `title` from book where `id`=:id",
+                params,
+                mapper
+        );
     }
 
     @Override
@@ -54,7 +59,11 @@ public class BookDaoJdbc implements BookDao {
         SqlParameterSource params = new MapSqlParameterSource().addValue("id", id);
         try {
             return Optional.ofNullable(
-                    operations.queryForObject("select * from book where `id` = :id", params, mapper)
+                    operations.queryForObject(
+                            "select `id`, `author_id`, `genre_id`, `title` from book where `id` = :id",
+                            params,
+                            mapper
+                    )
             );
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
@@ -87,7 +96,7 @@ public class BookDaoJdbc implements BookDao {
 
     @Override
     public Collection<Book> findAll() {
-        return operations.query("select * from book", mapper);
+        return operations.query("select `id`, `author_id`, `genre_id`, `title` from book", mapper);
     }
 
     @Override
