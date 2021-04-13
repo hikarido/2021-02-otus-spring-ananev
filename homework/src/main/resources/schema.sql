@@ -16,4 +16,6 @@ create table book(
     author_id long,
     genre_id long,
     title varchar(255)
+    constraint `fk_book_author_id` foreign key (`author_id`) references `author` (`id`)
+    constraint `fk_book_genre_id` foreign key (`genre_id`) references `genre` (`id`)
 );
