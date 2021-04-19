@@ -19,4 +19,4 @@ The training repository is located on [github](https://github.com/OtusTeam/Sprin
 4) [Homework 4 - homework3 app + refactoring, Spring Shell tui, SpringBootTest](./homework4-accepted)
 
 ### Spring and databases
-5) [Homework 5 - new challenge. CRUD for simple library on Spring data jdbc (NamedParametersJdbcTemplate, h2 database)](./homework)
+5) [Homework 5 - new challenge. CRUD for simple library on Spring data jdbc (NamedParametersJdbcTemplate, h2 database)](./homework5-accepted)
